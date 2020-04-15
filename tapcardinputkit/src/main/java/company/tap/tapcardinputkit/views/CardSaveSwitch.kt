@@ -2,6 +2,7 @@ package company.tap.tapcardinputkit.views
 
 import android.content.Context
 import android.util.AttributeSet
+import company.tap.tapcardinputkit.OnFormValueChangeListener
 import tapuilibrarykotlin.TapSwitch
 
 /**
@@ -11,4 +12,12 @@ import tapuilibrarykotlin.TapSwitch
  *
  */
 class CardSaveSwitch(context: Context, attrs: AttributeSet) : TapSwitch(context, attrs) {
+    var formValueChangeListener: OnFormValueChangeListener? = null
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        this.setOnCheckedChangeListener { _, isChecked ->
+            formValueChangeListener?.saveCardSwitched(isChecked)
+        }
+    }
 }

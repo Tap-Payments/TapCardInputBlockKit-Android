@@ -2,6 +2,7 @@ package company.tap.tapcardinputkit.views
 
 import android.content.Context
 import android.util.AttributeSet
+import company.tap.tapcardinputkit.OnFormValueChangeListener
 import tapuilibrarykotlin.TapButton
 
 /**
@@ -11,4 +12,12 @@ import tapuilibrarykotlin.TapButton
  *
  */
 class CardScannerButton(context: Context, attributeSet: AttributeSet): TapButton(context, attributeSet) {
+    var formValueChangeListener: OnFormValueChangeListener? = null
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        this.setOnClickListener {
+            formValueChangeListener?.scanButtonClicked()
+        }
+    }
 }

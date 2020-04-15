@@ -2,6 +2,7 @@ package company.tap.tapcardinputkit.views
 
 import android.content.Context
 import android.util.AttributeSet
+import company.tap.tapcardinputkit.OnFormValueChangeListener
 import tapuilibrarykotlin.TapEditText
 
 /**
@@ -10,5 +11,15 @@ import tapuilibrarykotlin.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
+
 class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
+
+    var formValueChangeListener: OnFormValueChangeListener? = null
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        this.afterTextChanged {
+            formValueChangeListener?.cvvValueChanged(it)
+        }
+    }
 }
