@@ -1,0 +1,14 @@
+package company.tap.tapcardinputkit.views
+
+import android.content.Context
+import android.util.AttributeSet
+import tapuilibrarykotlin.TapSwitch
+
+/**
+ *
+ * Created by Mario Gamal on 4/15/20
+ * Copyright © 2020 Tap Payments. All rights reserved.
+ *
+ */
+class CardSaveSwitch(context: Context, attrs: AttributeSet) : TapSwitch(context, attrs) {
+}

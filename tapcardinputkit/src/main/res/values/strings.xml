@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="for_faster_and_more_secure_checkout_save_your_card">For faster and more secure checkout, save your card</string>
+    <string name="card_number">Card Number</string>
+    <string name="scan">scan</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvv">CVV</string>
+    <string name="card_holder_name">Card Holder Name</string>
+</resources>
