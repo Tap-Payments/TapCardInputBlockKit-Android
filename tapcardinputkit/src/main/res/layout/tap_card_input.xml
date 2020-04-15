@@ -10,15 +10,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <company.tap.tapcardinputkit.views.CardNumberEditText
+        <company.tap.tapcardinputkit.internal.views.CardNumberEditText
             android:id="@+id/card_number"
             android:drawableEnd="@drawable/ic_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:inputType="number"
             android:hint="@string/card_number" />
 
-        <company.tap.tapcardinputkit.views.CardScannerButton
+        <company.tap.tapcardinputkit.internal.views.CardScannerButton
             android:id="@+id/card_scanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,29 +32,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <company.tap.tapcardinputkit.views.CardExpirationDateEditText
+        <company.tap.tapcardinputkit.internal.views.CardExpirationDateEditText
             android:id="@+id/expiration_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
+            android:inputType="date"
             android:hint="@string/mm_yy" />
 
-        <company.tap.tapcardinputkit.views.CardCvvEditText
+        <company.tap.tapcardinputkit.internal.views.CardCvvEditText
             android:id="@+id/card_cvv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
+            android:inputType="number"
             android:hint="@string/cvv" />
 
     </LinearLayout>
 
-    <company.tap.tapcardinputkit.views.CardHolderNameEditText
+    <company.tap.tapcardinputkit.internal.views.CardHolderNameEditText
         android:id="@+id/holder_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/card_holder_name" />
 
-    <company.tap.tapcardinputkit.views.CardSaveSwitch
+    <company.tap.tapcardinputkit.internal.views.CardSaveSwitch
         android:id="@+id/save_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

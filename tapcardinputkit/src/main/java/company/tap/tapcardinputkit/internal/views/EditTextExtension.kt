@@ -1,4 +1,4 @@
-package company.tap.tapcardinputkit.views
+package company.tap.tapcardinputkit.internal.views
 
 import android.text.Editable
 import android.text.TextWatcher
