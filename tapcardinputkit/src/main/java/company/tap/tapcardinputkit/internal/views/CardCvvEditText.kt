@@ -3,6 +3,7 @@ package company.tap.tapcardinputkit.internal.views
 import android.content.Context
 import android.util.AttributeSet
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
+
 import tapuilibrarykotlin.TapEditText
 
 /**
@@ -17,7 +18,14 @@ class CardCvvEditText(context: Context, attrs: AttributeSet) : TapEditText(conte
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
-            formValueChangeListener?.cvvValueChanged(it, true)
+            formValueChangeListener?.cvvValueChanged(it, isCvvValid())
         }
     }
+
+    private fun isCvvValid(): Boolean {
+
+        return true
+    }
+
+
 }

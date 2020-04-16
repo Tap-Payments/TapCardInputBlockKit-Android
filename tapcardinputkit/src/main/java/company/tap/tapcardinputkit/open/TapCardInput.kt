@@ -3,7 +3,7 @@ package company.tap.tapcardinputkit.open
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import company.tap.commonmodels.Expiry
+import  company.tap.tapcardvalidator_android.CardBrand
 import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
@@ -38,15 +38,17 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     override fun cvvValueChanged(cvv: String, valid: Boolean) {
         if (valid)
-            TODO("No CVV in Model")
+            println("cvv not impelmented = [${cvv}], valid = [${valid}]")
 
     }
 
     override fun dateValueChanged(date: String, valid: Boolean) {
         if (valid) {
             tapCard.expiry = date
-            tapCard.expMonth = "take month from date"
-            tapCard.expYear = "take year from date"
+            if(date.contains("/")){
+                tapCard.expMonth= date.take(2)
+                tapCard.expYear = date.takeLast(2)
+            }
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }
@@ -58,10 +60,15 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
         }
     }
 
-    override fun numberValueChanged(number: String, valid: Boolean) {
+    override fun numberValueChanged(number: String, valid: Boolean, cardType:CardBrand) {
         if (valid) {
-            tapCard.firstSix = "Take first six"
-            tapCard.lastFour = "Take last four"
+            if (number.isNotEmpty()){
+                tapCard.firstSix = number.replace(" ","").take(6)
+            }
+            if (number.isNotEmpty()){
+                tapCard.lastFour = number.trim().takeLast(4)
+            }
+            tapCard.brand?.name
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }

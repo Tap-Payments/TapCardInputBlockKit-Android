@@ -3,11 +3,13 @@ package company.tap.tapcardinputsample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.open.TapCardInput
 import company.tap.tapcardinputkit.open.TapCardInputListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),
+
+ class MainActivity : AppCompatActivity(),
     TapCardInputListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +22,12 @@ class MainActivity : AppCompatActivity(),
         Toast.makeText(this, "Activity Received", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onValueChanged(card: TapCardInput) {
-        TODO("Not yet implemented")
-    }
-}
+     override fun saveCardSwitched(checked: Boolean) {
+
+     }
+
+     override fun onValueChanged(card: TapCard) {
+         println("tapcard value in main = [${card}]")
+     }
+
+ }
