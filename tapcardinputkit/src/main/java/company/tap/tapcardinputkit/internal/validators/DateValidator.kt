@@ -23,7 +23,7 @@ All rights reserved.
 
 object DateValidator {
     private var mCalendar: Calendar = Calendar.getInstance()
-
+    const val MAXIMUM_VALID_YEAR_DIFFERENCE = 20
     /**
      * Helper for determining whether a date is a valid credit card expiry date.
      *
@@ -46,7 +46,7 @@ object DateValidator {
      * @return the boolean
      */
     private fun isValidHelper(monthString: String, yearString: String): Boolean {
-        val MAXIMUM_VALID_YEAR_DIFFERENCE = 20
+
         if (TextUtils.isEmpty(monthString)) {
             return false
         }
@@ -89,7 +89,7 @@ object DateValidator {
      * dates.
      */
     private fun getCurrentMonth(): Int {
-        return mCalendar?.get(Calendar.MONTH)?.plus(1)!!
+        return mCalendar.get(Calendar.MONTH).plus(1)
     }
 
     /**
@@ -98,7 +98,7 @@ object DateValidator {
      */
     private fun getCurrentTwoDigitYear(): Int {
         mCalendar = Calendar.getInstance()
-        return mCalendar?.get(Calendar.YEAR)?.rem(100)!!
+        return mCalendar.get(Calendar.YEAR).rem(100)
     }
 
 
