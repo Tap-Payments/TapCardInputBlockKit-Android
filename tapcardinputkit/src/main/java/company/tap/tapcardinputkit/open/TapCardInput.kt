@@ -45,10 +45,10 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
     override fun dateValueChanged(date: String, valid: Boolean) {
         if (valid) {
             tapCard.expiry = date
-            if(date.contains("/")){
+
                 tapCard.expMonth= date.take(2)
                 tapCard.expYear = date.takeLast(2)
-            }
+
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }

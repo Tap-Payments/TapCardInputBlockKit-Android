@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:inputType="date"
+            android:maxLength="4"
             android:hint="@string/mm_yy" />
 
         <company.tap.tapcardinputkit.internal.views.CardCvvEditText
