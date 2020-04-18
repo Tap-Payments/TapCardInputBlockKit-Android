@@ -62,13 +62,14 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     override fun numberValueChanged(number: String, valid: Boolean, cardType:CardBrand) {
         if (valid) {
+            println("number tap val = [${number}], valid = [${valid}], cardType = [${cardType}]")
             if (number.isNotEmpty()){
                 tapCard.firstSix = number.replace(" ","").take(6)
             }
             if (number.isNotEmpty()){
                 tapCard.lastFour = number.trim().takeLast(4)
             }
-            tapCard.brand?.name
+            tapCard.cardObject = cardType.name
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }
