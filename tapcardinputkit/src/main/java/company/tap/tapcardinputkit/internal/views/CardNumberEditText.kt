@@ -1,16 +1,15 @@
 package company.tap.tapcardinputkit.internal.views
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.text.SpannableStringBuilder
 import android.util.AttributeSet
-import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardvalidator_android.CardBrand
-import company.tap.tapcardvalidator_android.CardBrand.americanExpress
 import company.tap.tapcardvalidator_android.CardValidationState
 import company.tap.tapcardvalidator_android.CardValidator
 import company.tap.tapcardvalidator_android.DefinedCardBrand
 import tapuilibrarykotlin.TapEditText
+
 
 /**
  *
@@ -21,48 +20,54 @@ import tapuilibrarykotlin.TapEditText
 class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
     var formValueChangeListener: OnFormValueChangeListener? = null
     lateinit var cardType: CardBrand
-    lateinit var cardNumber:SpannableStringBuilder
+    var count = 0
+    lateinit var spaceArray: IntArray
 
+    @SuppressLint("SetTextI18n")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
-            val brand: DefinedCardBrand = validateCardNumber(it)
-            println("brand obatined is ${brand.cardBrand}")
-            val spacings: IntArray
-            if(!brand.cardBrand.name.equals(americanExpress)) {
-                spacings = intArrayOf(4, 8, 12)
+            val brand = validateCardNumber(editableText.toString())
+            val cardBrand = brand?.cardBrand.name
+            val inputlength = editableText.toString().length
+
+            spaceArray = if (brand == CardBrand.americanExpress) {
+                intArrayOf(4, 10)
             } else {
-                spacings = intArrayOf(4, 10)
+                intArrayOf(4, 9, 14)
             }
-
-            var text: String = it
-            text = text.replace(" ", "")
-             cardNumber = SpannableStringBuilder(text)
-
-            for (i in spacings.indices.reversed()) {
-                val space = spacings[i]
-                if (space < text.length) {
-                    cardNumber.insert(space, " ")
-                }
+            if (count <= inputlength && (inputlength in spaceArray)) {
+                setText("$editableText ");
+                val pos = editableText.length
+                setSelection(pos)
+            } else if (count >= inputlength && (inputlength in spaceArray)) {
+                setText(
+                    editableText.toString()
+                        .substring(
+                            0, editableText
+                                .toString().length - 1
+                        )
+                );
+                val pos = editableText.length
+                setSelection(pos)
             }
-            println("cardNumber after spacing is $cardNumber")
-
+            count = editableText.toString().length
             cardType = brand.cardBrand
-            formValueChangeListener?.numberValueChanged(cardNumber.toString(), isCardValid(it), cardType)
-
+            formValueChangeListener?.numberValueChanged(editableText.toString(), isCardValid(editableText.toString()), cardType)
         }
-    }
 
-    private fun isCardValid(cardNumber:String) : Boolean {
-        val brand = CardValidator.validate(cardNumber)
-        println("brand cardValid ${brand.cardBrand}")
-        return validateCardNumber(cardNumber).validationState == CardValidationState.valid
 
     }
-
-    private fun validateCardNumber(cardNumber: String) : DefinedCardBrand =
-        CardValidator.validate(cardNumber.replace(" ", ""))
-
-
 
 }
+
+private fun isCardValid(cardNumber: String): Boolean {
+    println("cardNumber in valid = [${cardNumber}]")
+    return validateCardNumber(cardNumber).validationState == CardValidationState.valid
+
+}
+
+private fun validateCardNumber(cardNumber: String): DefinedCardBrand =
+    CardValidator.validate(cardNumber.replace(" ", ""))
+
+
