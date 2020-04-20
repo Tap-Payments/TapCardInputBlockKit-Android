@@ -55,6 +55,7 @@
         android:id="@+id/holder_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textFilter"
         android:hint="@string/card_holder_name" />
 
     <company.tap.tapcardinputkit.internal.views.CardSaveSwitch

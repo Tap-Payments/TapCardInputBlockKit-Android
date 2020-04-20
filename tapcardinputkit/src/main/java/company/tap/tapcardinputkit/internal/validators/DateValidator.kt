@@ -24,6 +24,7 @@ All rights reserved.
 object DateValidator {
     private var mCalendar: Calendar = Calendar.getInstance()
     const val MAXIMUM_VALID_YEAR_DIFFERENCE = 20
+
     /**
      * Helper for determining whether a date is a valid credit card expiry date.
      *

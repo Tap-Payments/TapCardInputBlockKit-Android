@@ -1,9 +1,10 @@
 package company.tap.tapcardinputkit.open
 
 import android.content.Context
+import android.text.InputFilter
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import  company.tap.tapcardvalidator_android.CardBrand
+import company.tap.commonmodels.CardBrand
 import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
@@ -20,6 +21,7 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     var tapCardInputListener: TapCardInputListener? = null
     val tapCard = TapCard()
+    var maxInput=0
 
     init {
         inflate(context,
@@ -38,7 +40,12 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
 
     override fun cvvValueChanged(cvv: String, valid: Boolean) {
         if (valid)
-            println("cvv not impelmented = [${cvv}], valid = [${valid}]")
+            if (tapCard.cardObject == CardBrand.americanExpress.name) {
+                maxInput = 4
+            } else {
+                maxInput = 3
+            }
+        card_cvv.filters = arrayOf(InputFilter.LengthFilter(maxInput))
 
     }
 
@@ -54,13 +61,14 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
     }
 
     override fun nameValueChanged(name: String, valid: Boolean) {
+        println("name tap val = [${name}], valid = [${valid}]")
         if (valid) {
             tapCard.name = name
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }
 
-    override fun numberValueChanged(number: String, valid: Boolean, cardType:CardBrand) {
+    override fun numberValueChanged(number: String, valid: Boolean, cardType: String?) {
         if (valid) {
             println("number tap val = [${number}], valid = [${valid}], cardType = [${cardType}]")
             if (number.isNotEmpty()){
@@ -69,7 +77,7 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
             if (number.isNotEmpty()){
                 tapCard.lastFour = number.trim().takeLast(4)
             }
-            tapCard.cardObject = cardType.name
+            tapCard.cardObject = cardType
             tapCardInputListener?.onValueChanged(tapCard)
         }
     }

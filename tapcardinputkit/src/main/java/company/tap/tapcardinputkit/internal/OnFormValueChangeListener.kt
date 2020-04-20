@@ -1,7 +1,5 @@
 package company.tap.tapcardinputkit.internal
 
-import company.tap.tapcardvalidator_android.CardBrand
-
 /**
  *
  * Created by Mario Gamal on 4/15/20
@@ -13,6 +11,6 @@ interface OnFormValueChangeListener {
     fun cvvValueChanged(cvv: String, valid: Boolean)
     fun dateValueChanged(date: String, valid: Boolean)
     fun nameValueChanged(name: String, valid: Boolean)
-    fun numberValueChanged(number: String, valid: Boolean,cardType:CardBrand)
+    fun numberValueChanged(number: String, valid: Boolean, cardType: String?)
     fun saveCardSwitched(checked: Boolean)
 }

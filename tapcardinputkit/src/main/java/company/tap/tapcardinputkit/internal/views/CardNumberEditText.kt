@@ -2,7 +2,9 @@ package company.tap.tapcardinputkit.internal.views
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.InputFilter
 import android.util.AttributeSet
+import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardvalidator_android.CardBrand
 import company.tap.tapcardvalidator_android.CardValidationState
@@ -19,23 +21,27 @@ import tapuilibrarykotlin.TapEditText
  */
 class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
     var formValueChangeListener: OnFormValueChangeListener? = null
-    lateinit var cardType: CardBrand
+    lateinit var tapCard: TapCard
     var count = 0
     lateinit var spaceArray: IntArray
+    var maxLength: Int = 0
 
     @SuppressLint("SetTextI18n")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
             val brand = validateCardNumber(editableText.toString())
-            val cardBrand = brand?.cardBrand.name
+            val cardBrand = brand.cardBrand.name
             val inputlength = editableText.toString().length
-
-            spaceArray = if (brand == CardBrand.americanExpress) {
-                intArrayOf(4, 10)
+            tapCard = TapCard()
+            if (cardBrand == CardBrand.americanExpress.name) {
+                spaceArray = intArrayOf(4, 10)
+                maxLength = 18
             } else {
-                intArrayOf(4, 9, 14)
+                spaceArray = intArrayOf(4, 9, 14)
+                maxLength = 19
             }
+            filters = arrayOf(InputFilter.LengthFilter(maxLength))
             if (count <= inputlength && (inputlength in spaceArray)) {
                 setText("$editableText ");
                 val pos = editableText.length
@@ -52,8 +58,15 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
                 setSelection(pos)
             }
             count = editableText.toString().length
-            cardType = brand.cardBrand
-            formValueChangeListener?.numberValueChanged(editableText.toString(), isCardValid(editableText.toString()), cardType)
+            if (::tapCard.isInitialized) {
+                tapCard.cardObject = brand.cardBrand.name
+            }
+
+            formValueChangeListener?.numberValueChanged(
+                editableText.toString(),
+                isCardValid(editableText.toString()),
+                tapCard.cardObject
+            )
         }
 
 
