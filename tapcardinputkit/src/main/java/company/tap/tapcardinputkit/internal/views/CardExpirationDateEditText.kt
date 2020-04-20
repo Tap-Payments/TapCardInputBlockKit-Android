@@ -6,6 +6,7 @@ import android.text.Spanned
 import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardinputkit.internal.validators.DateValidator
 import company.tap.tapcardinputkit.internal.validators.SlashSpan
@@ -41,6 +42,8 @@ class CardExpirationDateEditText(context: Context, attrs: AttributeSet) :
                     .endsWith("20") || selectionStart == 6) && isDateValid()
             ) {
                 focusNextView()
+            } else {
+                error = resources.getString(R.string.date_invalid)
             }
             formValueChangeListener?.dateValueChanged(it, isDateValid())
         }

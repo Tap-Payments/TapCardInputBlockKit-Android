@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.InputFilter
 import android.util.AttributeSet
 import company.tap.commonmodels.TapCard
+import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardvalidator_android.CardBrand
 import company.tap.tapcardvalidator_android.CardValidationState
@@ -64,6 +65,9 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
                 isCardValid(editableText.toString()),
                 tapCard.cardObject
             )
+            if (!isCardValid(editableText.toString())) {
+                error = resources.getString(R.string.card_number_invalid)
+            }
         }
 
 

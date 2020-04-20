@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.AttributeSet
+import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import tapuilibrarykotlin.TapEditText
 
@@ -25,11 +26,17 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
-
             filters = arrayOf(AllCaps(),
                 LengthFilter(NAME_ON_CARD_MAX_LENGTH),
                 object : InputFilter {
-                    override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dest_start: Int, dest_end: Int): CharSequence {
+                    override fun filter(
+                        source: CharSequence,
+                        start: Int,
+                        end: Int,
+                        dest: Spanned,
+                        dest_start: Int,
+                        dest_end: Int
+                    ): CharSequence {
                         var keepOriginal = true
                         val sb = StringBuilder(end - start)
                         for (i in start until end) {
@@ -39,7 +46,7 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                         }
                         return if (source is Spanned && !keepOriginal) {
                             val sp = SpannableString(sb)
-                            TextUtils.copySpansFrom(source as Spanned, start, sb.length, null, sp, 0)
+                            TextUtils.copySpansFrom(source, start, sb.length, null, sp, 0)
                             sp
                         } else {
                             sb
@@ -54,7 +61,14 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                         return c == '.'
                     }
                 })
-            formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
+
+            if (isCardholdernameValid()) {
+                formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
+            } else {
+                isFocusable = true
+                error = resources.getString(R.string.card_holder_name_invalid)
+                requestFocus()
+            }
         }
     }
 

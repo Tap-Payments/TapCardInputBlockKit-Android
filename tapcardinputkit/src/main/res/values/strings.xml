@@ -6,4 +6,8 @@
     <string name="mm_yy">MM/YY</string>
     <string name="cvv">CVV</string>
     <string name="card_holder_name">Card Holder Name</string>
+    <string name="card_holder_name_invalid">Name must be 3 characters at least!</string>
+    <string name="date_invalid">Please put a valid date!</string>
+    <string name="cvv_invalid">Please enter a valid CVV!</string>
+    <string name="card_number_invalid">Card number is invalid!</string>
 </resources>

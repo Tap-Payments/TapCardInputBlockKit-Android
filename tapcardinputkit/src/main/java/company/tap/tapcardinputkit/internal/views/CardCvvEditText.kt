@@ -1,14 +1,9 @@
 package company.tap.tapcardinputkit.internal.views
 
 import android.content.Context
-import android.text.InputFilter
 import android.util.AttributeSet
-import company.tap.commonmodels.TapCard
+import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import company.tap.tapcardvalidator_android.CardBrand
-import company.tap.tapcardvalidator_android.CardValidator
-import kotlinx.android.synthetic.main.tap_card_input.view.*
-
 import tapuilibrarykotlin.TapEditText
 
 /**
@@ -19,12 +14,17 @@ import tapuilibrarykotlin.TapEditText
  */
 class CardCvvEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
     var formValueChangeListener: OnFormValueChangeListener? = null
-    var inputString =0
+    var inputString = 0
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
             inputString = it.length
-            formValueChangeListener?.cvvValueChanged(it, isCvvValid())
+
+            if (isCvvValid()) {
+                formValueChangeListener?.cvvValueChanged(it, isCvvValid())
+            } else {
+                error = resources.getString(R.string.cvv_invalid)
+            }
         }
     }
 
