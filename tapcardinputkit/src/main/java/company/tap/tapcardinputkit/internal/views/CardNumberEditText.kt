@@ -43,16 +43,13 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
             }
             filters = arrayOf(InputFilter.LengthFilter(maxLength))
             if (count <= inputlength && (inputlength in spaceArray)) {
-                setText("$editableText ");
+                setText("$editableText ")
                 val pos = editableText.length
                 setSelection(pos)
             } else if (count >= inputlength && (inputlength in spaceArray)) {
                 setText(
                     editableText.toString()
-                        .substring(
-                            0, editableText
-                                .toString().length - 1
-                        )
+                        .substring(0, editableText.toString().length - 1)
                 );
                 val pos = editableText.length
                 setSelection(pos)

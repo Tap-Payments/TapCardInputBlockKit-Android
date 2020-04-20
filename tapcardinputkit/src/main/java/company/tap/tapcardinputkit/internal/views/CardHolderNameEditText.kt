@@ -29,14 +29,7 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
             filters = arrayOf(AllCaps(),
                 LengthFilter(NAME_ON_CARD_MAX_LENGTH),
                 object : InputFilter {
-                    override fun filter(
-                        source: CharSequence,
-                        start: Int,
-                        end: Int,
-                        dest: Spanned,
-                        dest_start: Int,
-                        dest_end: Int
-                    ): CharSequence {
+                    override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dest_start: Int, dest_end: Int): CharSequence {
                         var keepOriginal = true
                         val sb = StringBuilder(end - start)
                         for (i in start until end) {
@@ -46,14 +39,7 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                         }
                         return if (source is Spanned && !keepOriginal) {
                             val sp = SpannableString(sb)
-                            TextUtils.copySpansFrom(
-                                source as Spanned,
-                                start,
-                                sb.length,
-                                null,
-                                sp,
-                                0
-                            )
+                            TextUtils.copySpansFrom(source as Spanned, start, sb.length, null, sp, 0)
                             sp
                         } else {
                             sb
