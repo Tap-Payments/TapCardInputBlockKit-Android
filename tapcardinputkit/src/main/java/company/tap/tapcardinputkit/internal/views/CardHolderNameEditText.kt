@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
+import kotlinx.android.synthetic.main.tap_card_input.view.*
 import tapuilibrarykotlin.TapEditText
 
 
@@ -61,14 +62,13 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                         return c == '.'
                     }
                 })
-
             if (isCardholdernameValid()) {
                 formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
+                error = "null"
             } else {
-                isFocusable = true
                 error = resources.getString(R.string.card_holder_name_invalid)
-                requestFocus()
             }
+
         }
     }
 

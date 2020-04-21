@@ -54,7 +54,7 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
                 setText(
                     editableText.toString()
                         .substring(0, editableText.toString().length - 1)
-                );
+                )
                 val pos = editableText.length
                 setSelection(pos)
             }
@@ -70,6 +70,8 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
             )
             if (!isCardValid(editableText.toString())) {
                 error = resources.getString(R.string.card_number_invalid)
+            }else{
+                error = "null"
             }
         }
 

@@ -19,11 +19,13 @@ class CardCvvEditText(context: Context, attrs: AttributeSet) : TapEditText(conte
         super.onAttachedToWindow()
         this.afterTextChanged {
             inputString = it.length
-
             if (isCvvValid()) {
                 formValueChangeListener?.cvvValueChanged(it, isCvvValid())
-            } else {
+            }
+            if(editableText.isEmpty()){
                 error = resources.getString(R.string.cvv_invalid)
+            }else{
+                error = "null"
             }
         }
     }

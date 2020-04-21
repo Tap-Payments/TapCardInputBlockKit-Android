@@ -42,6 +42,7 @@ class CardExpirationDateEditText(context: Context, attrs: AttributeSet) :
                     .endsWith("20") || selectionStart == 6) && isDateValid()
             ) {
                 focusNextView()
+                error = "null"
             } else {
                 error = resources.getString(R.string.date_invalid)
             }
