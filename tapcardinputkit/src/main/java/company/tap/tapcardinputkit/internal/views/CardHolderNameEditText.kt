@@ -10,7 +10,6 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import kotlinx.android.synthetic.main.tap_card_input.view.*
 import tapuilibrarykotlin.TapEditText
 
 
@@ -26,49 +25,62 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
     private var NAME_ON_CARD_MAX_LENGTH = 26
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        this.afterTextChanged {
-            filters = arrayOf(AllCaps(),
-                LengthFilter(NAME_ON_CARD_MAX_LENGTH),
-                object : InputFilter {
-                    override fun filter(
-                        source: CharSequence,
-                        start: Int,
-                        end: Int,
-                        dest: Spanned,
-                        dest_start: Int,
-                        dest_end: Int
-                    ): CharSequence {
-                        var keepOriginal = true
-                        val sb = StringBuilder(end - start)
-                        for (i in start until end) {
-                            val c = source[i]
-                            if (isCharAllowed(c)) // put your condition here
-                                sb.append(c) else keepOriginal = false
+        filters = arrayOf(AllCaps(),
+            LengthFilter(NAME_ON_CARD_MAX_LENGTH),
+            object : InputFilter {
+                override fun filter(
+                    source: CharSequence,
+                    start: Int,
+                    end: Int,
+                    dest: Spanned,
+                    dest_start: Int,
+                    dest_end: Int
+                ): CharSequence? {
+                    var keepOriginal = true
+                    val sb = StringBuilder(end - start)
+                    for (i in start until end) {
+                        val c = source[i]
+                        if (isCharAllowed(c)) {
+                            sb.append(c) // put your condition here
+                        } else {
+                            keepOriginal = false
                         }
-                        return if (source is Spanned && !keepOriginal) {
+                    }
+                    return if (keepOriginal) null else {
+                        if (source is Spanned) {
                             val sp = SpannableString(sb)
-                            TextUtils.copySpansFrom(source, start, sb.length, null, sp, 0)
+                            TextUtils.copySpansFrom(
+                                source,
+                                start,
+                                sb.length,
+                                null,
+                                sp,
+                                0
+                            )
                             sp
                         } else {
                             sb
                         }
                     }
+                }
 
-                    private fun isCharAllowed(c: Char): Boolean {
-                        return Character.isLetter(c) || Character.isSpaceChar(c) || isDotChar(c)
-                    }
+                private fun isCharAllowed(c: Char): Boolean {
+                    return Character.isLetter(c) || Character.isSpaceChar(c) || isDotChar(
+                        c
+                    )
+                }
 
-                    private fun isDotChar(c: Char): Boolean {
-                        return c == '.'
-                    }
-                })
+                private fun isDotChar(c: Char): Boolean {
+                    return c == '.'
+                }
+            })
+        this.afterTextChanged {
             if (isCardholdernameValid()) {
                 formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
                 error = "null"
             } else {
                 error = resources.getString(R.string.card_holder_name_invalid)
             }
-
         }
     }
 
