@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import tapuilibrarykotlin.TapEditText
@@ -59,7 +60,10 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                             )
                             sp
                         } else {
-                            sb
+                            if(sb.isEmpty()){
+                              sb.append(" ")
+                            }
+                           sb
                         }
                     }
                 }
