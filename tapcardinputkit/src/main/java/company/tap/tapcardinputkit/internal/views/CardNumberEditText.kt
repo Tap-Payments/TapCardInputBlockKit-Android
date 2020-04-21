@@ -26,13 +26,16 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
     var count = 0
     lateinit var spaceArray: IntArray
     var maxLength: Int = 0
-
+    private lateinit var cardBrand:String
     @SuppressLint("SetTextI18n")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
             val brand = validateCardNumber(editableText.toString())
-            val cardBrand = brand.cardBrand.name
+            if(brand.cardBrand != null){
+                 cardBrand = brand.cardBrand.name
+            }
+
             val inputlength = editableText.toString().length
             tapCard = TapCard()
             if (cardBrand == CardBrand.americanExpress.name) {
@@ -56,7 +59,7 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
                 setSelection(pos)
             }
             count = editableText.toString().length
-            if (::tapCard.isInitialized) {
+            if (::tapCard.isInitialized && brand.cardBrand!=null) {
                 tapCard.cardObject = brand.cardBrand.name
             }
 
