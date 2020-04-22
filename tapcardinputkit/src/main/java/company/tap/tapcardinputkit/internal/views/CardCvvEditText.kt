@@ -22,9 +22,9 @@ class CardCvvEditText(context: Context, attrs: AttributeSet) : TapEditText(conte
             if (isCvvValid()) {
                 formValueChangeListener?.cvvValueChanged(it, isCvvValid())
             }
-            if(editableText.isEmpty()){
+            if (editableText.isEmpty()) {
                 error = resources.getString(R.string.cvv_invalid)
-            }else{
+            } else {
                 error = "null"
             }
         }

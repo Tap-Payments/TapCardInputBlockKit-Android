@@ -3,13 +3,15 @@ package company.tap.tapcardinputkit.internal.views
 import android.content.Context
 import android.text.Editable
 import android.text.Spanned
+import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardinputkit.internal.validators.DateValidator
 import company.tap.tapcardinputkit.internal.validators.SlashSpan
-import company.tap.tapuilibrary.TapEditText
+import tapuilibrarykotlin.TapEditText
+
 
 /**
  *
@@ -17,26 +19,14 @@ import company.tap.tapuilibrary.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardExpirationDateEditText(context: Context) :
-    TapEditText(context) {
+class CardExpirationDateEditText(context: Context, attrs: AttributeSet) :
+    TapEditText(context, attrs) {
     var formValueChangeListener: OnFormValueChangeListener? = null
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         this.afterTextChanged {
-            if (editableText.length == 1 && Character.getNumericValue(editableText.get(0)) >= 2) {
-                prependLeadingZero(editableText)
-            }
-            val paddingSpans: Array<Any> = arrayOf(
-                editableText.getSpans(
-                    0, editableText.length,
-                    SlashSpan::class.java
-                )
-            )
-            for (span in paddingSpans) {
-                editableText.removeSpan(span)
-            }
-            addDateSlash(editableText)
+            dateFormatter()
             if ((selectionStart == 4 && !editableText.toString()
                     .endsWith("20") || selectionStart == 6) && isDateValid()
             ) {
@@ -118,6 +108,22 @@ class CardExpirationDateEditText(context: Context) :
         return if (next.requestFocus()) {
             next
         } else null
+    }
+
+    private fun dateFormatter() {
+        if (editableText.length == 1 && Character.getNumericValue(editableText.get(0)) >= 2) {
+            prependLeadingZero(editableText)
+        }
+        val paddingSpans: Array<Any> = arrayOf(
+            editableText.getSpans(
+                0, editableText.length,
+                SlashSpan::class.java
+            )
+        )
+        for (span in paddingSpans) {
+            editableText.removeSpan(span)
+        }
+        addDateSlash(editableText)
     }
 
 }

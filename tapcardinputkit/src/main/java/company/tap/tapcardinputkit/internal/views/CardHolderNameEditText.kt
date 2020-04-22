@@ -7,9 +7,11 @@ import android.text.InputFilter.LengthFilter
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
+import android.util.AttributeSet
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import company.tap.tapuilibrary.TapEditText
+import tapuilibrarykotlin.TapEditText
+
 
 /**
  *
@@ -17,12 +19,29 @@ import company.tap.tapuilibrary.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardHolderNameEditText(context: Context) : TapEditText(context) {
+class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
 
     var formValueChangeListener: OnFormValueChangeListener? = null
     private var NAME_ON_CARD_MAX_LENGTH = 26
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        setInputFilters()
+        this.afterTextChanged {
+            if (isCardholdernameValid() && editableText.toString().isNotBlank()) {
+                formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
+                error = "null"
+            } else {
+                error = resources.getString(R.string.card_holder_name_invalid)
+
+            }
+        }
+    }
+
+    private fun isCardholdernameValid(): Boolean {
+        return editableText.trim().length >= 3
+    }
+
+    private fun setInputFilters() {
         filters = arrayOf(AllCaps(),
             LengthFilter(NAME_ON_CARD_MAX_LENGTH),
             object : InputFilter {
@@ -57,12 +76,18 @@ class CardHolderNameEditText(context: Context) : TapEditText(context) {
                             )
                             sp
                         } else {
-                            if (sb.isEmpty()) {
-                                sb.append(" ")
+                            try {
+                                if (sb.isEmpty()) {
+                                    setText("")
+                                }
+                                sb
+                            } catch (e: Exception) {
+                                sb
                             }
-                            sb
+
                         }
                     }
+
                 }
 
                 private fun isCharAllowed(c: Char): Boolean {
@@ -75,18 +100,6 @@ class CardHolderNameEditText(context: Context) : TapEditText(context) {
                     return c == '.'
                 }
             })
-        this.afterTextChanged {
-            if (isCardholdernameValid()) {
-                formValueChangeListener?.nameValueChanged(it, isCardholdernameValid())
-                error = "null"
-            } else {
-                error = resources.getString(R.string.card_holder_name_invalid)
-            }
-        }
-    }
-
-    private fun isCardholdernameValid(): Boolean {
-        return editableText.trim().length >= 3
     }
 
 }
