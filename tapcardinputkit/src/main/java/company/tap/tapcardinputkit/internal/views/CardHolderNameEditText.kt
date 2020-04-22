@@ -7,12 +7,9 @@ import android.text.InputFilter.LengthFilter
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
-import android.util.AttributeSet
-import android.util.Log
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import tapuilibrarykotlin.TapEditText
-
+import company.tap.tapuilibrary.TapEditText
 
 /**
  *
@@ -20,7 +17,7 @@ import tapuilibrarykotlin.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
+class CardHolderNameEditText(context: Context) : TapEditText(context) {
 
     var formValueChangeListener: OnFormValueChangeListener? = null
     private var NAME_ON_CARD_MAX_LENGTH = 26
@@ -60,10 +57,10 @@ class CardHolderNameEditText(context: Context, attrs: AttributeSet) : TapEditTex
                             )
                             sp
                         } else {
-                            if(sb.isEmpty()){
-                              sb.append(" ")
+                            if (sb.isEmpty()) {
+                                sb.append(" ")
                             }
-                           sb
+                            sb
                         }
                     }
                 }

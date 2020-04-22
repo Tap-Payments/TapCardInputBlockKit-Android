@@ -3,7 +3,6 @@ package company.tap.tapcardinputkit.internal.views
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.InputFilter
-import android.util.AttributeSet
 import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
@@ -11,7 +10,7 @@ import company.tap.tapcardvalidator_android.CardBrand
 import company.tap.tapcardvalidator_android.CardValidationState
 import company.tap.tapcardvalidator_android.CardValidator
 import company.tap.tapcardvalidator_android.DefinedCardBrand
-import tapuilibrarykotlin.TapEditText
+import company.tap.tapuilibrary.TapEditText
 
 
 /**
@@ -20,7 +19,7 @@ import tapuilibrarykotlin.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(context, attrs) {
+class CardNumberEditText(context: Context) : TapEditText(context) {
     var formValueChangeListener: OnFormValueChangeListener? = null
     lateinit var tapCard: TapCard
     var count = 0
@@ -70,7 +69,7 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
             )
             if (!isCardValid(editableText.toString())) {
                 error = resources.getString(R.string.card_number_invalid)
-            }else{
+            } else {
                 error = "null"
             }
         }

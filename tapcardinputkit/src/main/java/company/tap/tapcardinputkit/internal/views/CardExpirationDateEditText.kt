@@ -3,14 +3,13 @@ package company.tap.tapcardinputkit.internal.views
 import android.content.Context
 import android.text.Editable
 import android.text.Spanned
-import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import company.tap.tapcardinputkit.internal.validators.DateValidator
 import company.tap.tapcardinputkit.internal.validators.SlashSpan
-import tapuilibrarykotlin.TapEditText
+import company.tap.tapuilibrary.TapEditText
 
 /**
  *
@@ -18,8 +17,8 @@ import tapuilibrarykotlin.TapEditText
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardExpirationDateEditText(context: Context, attrs: AttributeSet) :
-    TapEditText(context, attrs) {
+class CardExpirationDateEditText(context: Context) :
+    TapEditText(context) {
     var formValueChangeListener: OnFormValueChangeListener? = null
 
     override fun onAttachedToWindow() {

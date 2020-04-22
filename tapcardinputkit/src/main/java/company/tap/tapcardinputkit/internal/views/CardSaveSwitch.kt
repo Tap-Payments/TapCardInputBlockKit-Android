@@ -1,9 +1,8 @@
 package company.tap.tapcardinputkit.internal.views
 
 import android.content.Context
-import android.util.AttributeSet
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import tapuilibrarykotlin.TapSwitch
+import company.tap.tapuilibrary.TapSwitch
 
 /**
  *
@@ -11,7 +10,7 @@ import tapuilibrarykotlin.TapSwitch
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardSaveSwitch(context: Context, attrs: AttributeSet) : TapSwitch(context, attrs) {
+class CardSaveSwitch(context: Context) : TapSwitch(context) {
     var formValueChangeListener: OnFormValueChangeListener? = null
 
     override fun onAttachedToWindow() {

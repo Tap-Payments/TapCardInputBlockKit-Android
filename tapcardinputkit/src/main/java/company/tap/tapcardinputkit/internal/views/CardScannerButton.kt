@@ -1,9 +1,8 @@
 package company.tap.tapcardinputkit.internal.views
 
 import android.content.Context
-import android.util.AttributeSet
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import tapuilibrarykotlin.TapButton
+import company.tap.tapuilibrary.TapButton
 
 /**
  *
@@ -11,7 +10,7 @@ import tapuilibrarykotlin.TapButton
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardScannerButton(context: Context, attributeSet: AttributeSet): TapButton(context, attributeSet) {
+class CardScannerButton(context: Context) : TapButton(context) {
     var formValueChangeListener: OnFormValueChangeListener? = null
 
     override fun onAttachedToWindow() {
