@@ -19,13 +19,13 @@ import kotlinx.android.synthetic.main.tap_card_input.view.*
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
+ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
     OnFormValueChangeListener {
 
     var tapCardInputListener: TapCardInputListener? = null
     val tapCard = TapCard()
     var maxInput = 0
-    var settings: SharedPreferences? = null
+
 
     init {
         inflate(
@@ -38,7 +38,7 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
         save_card.formValueChangeListener = this
         holder_name.formValueChangeListener = this
         expiration_date.formValueChangeListener = this
-        getSavedURL()
+
     }
 
     override fun scanButtonClicked() {
@@ -93,15 +93,6 @@ class TapCardInput(context: Context, attrs: AttributeSet) : LinearLayout(context
         tapCardInputListener?.saveCardSwitched(checked)
     }
 
-    private fun getSavedURL() {
-        val handler = Handler()
-        val runnable = Runnable {
-            val sharedPref = context?.getSharedPreferences("App", Context.MODE_PRIVATE)
-            val highScore = sharedPref?.getStringSet("imagepath", null)
-            println("highScore is ${highScore}")
-        }
-        handler.postDelayed(runnable, 500)
 
-    }
 
 }

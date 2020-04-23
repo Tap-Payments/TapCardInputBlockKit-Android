@@ -50,26 +50,27 @@ class MainActivity : AppCompatActivity(),
 
         println("json = [${json}]")
 
-        val imageSet: Set<String> = HashSet()
+        val list: MutableList<String> = ArrayList()
         mAPIService.getPaymentOptions(json)?.enqueue(object : Callback<PaymentResponse> {
             override fun onResponse(
                 call: Call<PaymentResponse>,
                 response: Response<PaymentResponse>
             ) {
 
-                var paymentList = response?.body()?.payment_methods ?: emptyList()
+                val paymentList = response.body()?.payment_methods ?: emptyList()
                 val sharedPref =
                     baseContext?.getSharedPreferences("App", Context.MODE_PRIVATE) ?: return
 
-                for (i in paymentList?.indices!!) {
-                    var OneLetter: String = paymentList[i].image.toString()
-                    imageSet.plus(OneLetter)
+                for (i in paymentList.indices) {
+                    val imageIndex: String = paymentList[i].image.toString()
+                    list.add(imageIndex)
                     with(sharedPref.edit()) {
-                        putStringSet("imagepath", imageSet)
+                        putString("imagepath",list.toString())
                         apply()
                     }
 
                 }
+                println("image ste $list")
 
             }
 
