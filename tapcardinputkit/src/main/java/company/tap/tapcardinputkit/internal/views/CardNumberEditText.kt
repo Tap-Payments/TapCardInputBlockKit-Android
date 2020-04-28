@@ -71,7 +71,10 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
         }
         val inputlength = editableText.toString().length
         tapCard = TapCard()
-        getSavedURL(cardBrand)
+        if(cardBrand!=null){
+            getSavedURL(cardBrand)
+
+        }
         if (cardBrand == americanExpress.name) {
             spaceArray = intArrayOf(4, 10)
             maxLength = 18

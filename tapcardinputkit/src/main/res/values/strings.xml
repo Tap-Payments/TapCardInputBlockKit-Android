@@ -10,4 +10,7 @@
     <string name="date_invalid">Please put a valid date!</string>
     <string name="cvv_invalid">Please enter a valid CVV!</string>
     <string name="card_number_invalid">Card number is invalid!</string>
+    <string name="scan_a_card">Scan a card</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
 </resources>

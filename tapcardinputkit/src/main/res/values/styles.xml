@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="EditText">
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColor">@color/greyish_brown</item>
+        <item name="android:textSize">@dimen/font_size_16sp</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <!--Floating label text style-->
+    <style name="TextInputLayout.Hint" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/silver_light</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif</item>
+        <item name="android:textSize">@dimen/font_size_11sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SwitchPrimary" >
+        <item name="colorControlActivated">@color/vibrant_green</item>
+    </style>
+
+</resources>
