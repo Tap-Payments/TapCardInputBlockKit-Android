@@ -9,13 +9,13 @@ import android.util.AttributeSet
 import company.tap.commonmodels.TapCard
 import company.tap.tapcardinputkit.R
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import company.tap.tapcardvalidator_android.CardBrand
 import company.tap.tapcardvalidator_android.CardValidationState
 import company.tap.tapcardvalidator_android.CardValidator
 import company.tap.tapcardvalidator_android.DefinedCardBrand
 import tapuilibrarykotlin.TapEditText
 import java.io.InputStream
 import java.net.URL
+import company.tap.commonmodels.CardBrand.*
 
 
 /**
@@ -72,7 +72,7 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
         val inputlength = editableText.toString().length
         tapCard = TapCard()
         getSavedURL(cardBrand)
-        if (cardBrand == CardBrand.americanExpress.name) {
+        if (cardBrand == americanExpress.name) {
             spaceArray = intArrayOf(4, 10)
             maxLength = 18
         } else {
@@ -102,35 +102,17 @@ class CardNumberEditText(context: Context, attrs: AttributeSet) : TapEditText(co
         val sharedPref = context?.getSharedPreferences("App", Context.MODE_PRIVATE)
         val imagePaths = sharedPref?.getString("imagepath", null)
         result = imagePaths?.split(",")!!.map { it.trim() }
-        var imageURL: String? = null
-        when {
-            cardBrand.equals(CardBrand.knet.name) -> {
-                imageURL = result!!.elementAt(0)
-            }
-            cardBrand.equals(CardBrand.americanExpress.name) -> {
-                imageURL = result!!.elementAt(1)
-            }
-            cardBrand.equals(CardBrand.benefit.name) -> {
-                imageURL = result!!.elementAt(2)
-            }
-            cardBrand.equals(CardBrand.mada.name) -> {
-                imageURL = result!!.elementAt(3)
-            }
-            cardBrand.equals(CardBrand.visa.name) -> {
-                imageURL = result!!.elementAt(4)
-            }
-            cardBrand.equals(CardBrand.masterCard.name) -> {
-                imageURL = result!!.elementAt(5)
-            }
-            cardBrand.equals(CardBrand.fawry.name) -> {
-                imageURL = result!!.elementAt(6)
-            }
-            cardBrand.equals(CardBrand.omanNet.name) -> {
-                imageURL = result!!.elementAt(7)
-            }
-            cardBrand.equals(CardBrand.tap.name) -> {
-                imageURL = result!!.elementAt(8)
-            }
+        val imageURL = when(cardBrand){
+            knet.name -> result?.elementAt(0)
+            americanExpress.name -> result?.elementAt(1)
+            benefit.name -> result?.elementAt(2)
+            mada.name -> result?.elementAt(3)
+            visa.name -> result?.elementAt(4)
+            masterCard.name -> result?.elementAt(5)
+            fawry.name -> result?.elementAt(6)
+            omanNet.name -> result?.elementAt(7)
+            tap.name -> result?.elementAt(8)
+            else -> unknown.name
         }
 
         loadImageFromWebUrl(imageURL)
