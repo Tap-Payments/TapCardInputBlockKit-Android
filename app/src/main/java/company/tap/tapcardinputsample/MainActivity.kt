@@ -25,19 +25,9 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         card_input.tapCardInputListener = this
         var mAPIService: APIService? = null
-
-        // println("size of response $size")
-        val sp: SharedPreferences = getSharedPreferences(
-            "AppSharedPref",
-            0
-        ) // Open SharedPreferences with name AppSharedPref
-        //After oncreate
-
         mAPIService = ApiUtils.apiService
 
-        //Some Button click
-
-        var json: JSONObject = JSONObject()
+        val json: JSONObject = JSONObject()
         json.put("transaction_mode", "PURCHASE")
         json.put("items", "")
         json.put("shipping", "")
@@ -70,12 +60,11 @@ class MainActivity : AppCompatActivity(),
                     }
 
                 }
-                println("image ste $list")
-
             }
 
             override fun onFailure(call: Call<PaymentResponse>, t: Throwable) {
                 Log.i(TAG, "throw$t")
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
             }
 
         })

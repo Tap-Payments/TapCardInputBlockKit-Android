@@ -28,7 +28,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.github.Tap-Payments:TapUIKit-Android:0.0.3.6'
+    implementation 'com.github.Tap-Payments:TapUIKit-Android:0.0.5.2'
     implementation 'com.github.Tap-Payments:CommonDataModelsKit-Android:0.1.5'
     implementation 'com.github.Tap-Payments:TapCardValidator-Android:2.1.0'
 

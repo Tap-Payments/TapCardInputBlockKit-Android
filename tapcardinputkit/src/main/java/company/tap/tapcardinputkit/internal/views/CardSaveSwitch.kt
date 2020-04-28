@@ -3,7 +3,7 @@ package company.tap.tapcardinputkit.internal.views
 import android.content.Context
 import android.util.AttributeSet
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
-import tapuilibrarykotlin.TapSwitch
+import company.tap.tapuilibrary.TapSwitch
 
 
 /**
