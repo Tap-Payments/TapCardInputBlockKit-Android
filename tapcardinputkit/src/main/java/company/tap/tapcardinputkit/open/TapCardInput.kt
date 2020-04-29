@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.tap_card_input.view.*
             R.layout.tap_card_input, this
         )
         card_cvv.formValueChangeListener = this
-        card_scanner.formValueChangeListener = this
+       // card_scanner.formValueChangeListener = this
         card_number.formValueChangeListener = this
         save_card.formValueChangeListener = this
         holder_name.formValueChangeListener = this
