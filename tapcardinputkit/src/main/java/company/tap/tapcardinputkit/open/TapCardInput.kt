@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.tap_card_input.view.*
     init {
         inflate(
             context,
-            R.layout.tap_card_input, this
+            R.layout.tap_card_input2, this
         )
         card_cvv.formValueChangeListener = this
        // card_scanner.formValueChangeListener = this
