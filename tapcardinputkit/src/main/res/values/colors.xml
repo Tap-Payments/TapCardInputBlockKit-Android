@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="mercury">#E1E1E1</color>
+    <color name="greyish_brown" tools:ignore="MissingDefaultResource">#535353</color>
+    <color name="silver_light">#C9C9C9</color>
+    <color name="vibrant_green">#2ACE00</color>
+    <color name="vibrant_green_pressed">#1F9A00</color>
+</resources>

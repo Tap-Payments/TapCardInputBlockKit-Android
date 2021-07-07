@@ -11,6 +11,6 @@ interface OnFormValueChangeListener {
     fun cvvValueChanged(cvv: String, valid: Boolean)
     fun dateValueChanged(date: String, valid: Boolean)
     fun nameValueChanged(name: String, valid: Boolean)
-    fun numberValueChanged(number: String, valid: Boolean)
+    fun numberValueChanged(number: String, valid: Boolean, cardType: String?)
     fun saveCardSwitched(checked: Boolean)
 }

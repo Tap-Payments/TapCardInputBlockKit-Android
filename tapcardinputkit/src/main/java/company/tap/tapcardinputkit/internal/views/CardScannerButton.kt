@@ -11,7 +11,7 @@ import tapuilibrarykotlin.TapButton
  * Copyright © 2020 Tap Payments. All rights reserved.
  *
  */
-class CardScannerButton(context: Context, attributeSet: AttributeSet): TapButton(context, attributeSet) {
+class CardScannerButton(context: Context, attrs: AttributeSet) : TapButton(context, attrs) {
     var formValueChangeListener: OnFormValueChangeListener? = null
 
     override fun onAttachedToWindow() {

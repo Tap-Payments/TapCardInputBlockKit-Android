@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import company.tap.tapcardinputkit.internal.OnFormValueChangeListener
 import tapuilibrarykotlin.TapSwitch
 
+
 /**
  *
  * Created by Mario Gamal on 4/15/20

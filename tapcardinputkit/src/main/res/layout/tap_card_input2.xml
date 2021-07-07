@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/card_input_layout">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="15dp"
+      android:paddingRight="15dp">
+
+
+      <company.tap.tapcardinputkit.internal.views.CardNumberEditText
+          android:id="@+id/card_number"
+          style="@style/EditText"
+          android:layout_width="350dp"
+          android:layout_height="@dimen/edit_text_height_basic"
+          android:digits="0123456789 "
+          android:gravity="start"
+          android:inputType="number"
+          android:hint="@string/card_number"
+          android:drawableEnd="@drawable/ic_card"
+          android:backgroundTint="@null"
+          android:background="@null"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          android:paddingBottom="12dp"
+          android:paddingTop="12dp"
+
+          />
+
+      <View
+          android:id="@+id/view1"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:background="@color/mercury"
+          android:layout_below="@+id/card_number"/>
+      <ImageView
+          android:id="@+id/card_scanner"
+          android:layout_width="@dimen/margin_basic_25dp"
+          android:layout_height="@dimen/margin_basic_25dp"
+          android:layout_alignParentEnd="true"
+          android:layout_toRightOf="@+id/card_number"
+          android:layout_marginTop="5dp"
+          android:src="@drawable/ic_card"
+          android:contentDescription="@string/scan_a_card" />
+
+      <company.tap.tapcardinputkit.internal.views.CardExpirationDateEditText
+          android:id="@+id/expiration_date"
+          style="@style/EditText"
+          android:layout_width="200dp"
+          android:layout_height="@dimen/edit_text_height_basic"
+          android:cursorVisible="false"
+          android:inputType="date"
+          android:maxLength="4"
+          android:hint="@string/mm_yy"
+          app:backgroundTint="@color/mercury"
+          android:layout_below="@+id/card_number"
+          android:backgroundTint="@null"
+          android:background="@null"/>
+      <View
+          android:id="@+id/view"
+          android:layout_width="2dp"
+          android:layout_height="@dimen/edit_text_height_basic"
+          android:background="@color/mercury"
+          android:layout_toEndOf="@+id/expiration_date"
+          android:layout_below="@+id/view1"/>
+
+      <View
+          android:id="@+id/view2"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:background="@color/mercury"
+          android:layout_below="@+id/expiration_date"/>
+      <company.tap.tapcardinputkit.internal.views.CardCvvEditText
+          android:id="@+id/card_cvv"
+          style="@style/EditText"
+          android:layout_width="200dp"
+          android:layout_height="@dimen/edit_text_height_basic"
+          android:inputType="number"
+          android:hint="@string/cvv"
+          app:backgroundTint="@color/mercury"
+          android:layout_toRightOf="@id/view"
+          android:layout_below="@+id/card_number"
+          android:paddingLeft="@dimen/margin_basic_6dp"
+          android:backgroundTint="@null"
+          android:background="@null"/>
+
+      <company.tap.tapcardinputkit.internal.views.CardHolderNameEditText
+          android:id="@+id/holder_name"
+          style="@style/EditText"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/edit_text_height_basic"
+          android:inputType="textCapWords"
+          android:hint="@string/card_holder_name"
+          android:paddingStart="8dp"
+          android:paddingEnd="8dp"
+          app:backgroundTint="@color/mercury"
+          android:layout_below="@+id/expiration_date"
+          android:backgroundTint="@null"
+          android:background="@null"/>
+      <View
+          android:id="@+id/view3"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:background="@color/mercury"
+          android:layout_below="@+id/holder_name"/>
+
+  </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/card_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:paddingRight="18dp"
+        android:paddingLeft="18dp"
+        >
+
+        <TextView
+            android:id="@+id/switch_Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="#A3000000"
+            android:textSize="14dp"
+            android:text="@string/for_faster_and_more_secure_checkout_save_your_card" />
+
+        <company.tap.tapcardinputkit.internal.views.CardSaveSwitch
+            android:id="@+id/save_card"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:textOn="@string/on"
+            android:textOff="@string/off"
+            />
+    </LinearLayout>
+
+</LinearLayout>
