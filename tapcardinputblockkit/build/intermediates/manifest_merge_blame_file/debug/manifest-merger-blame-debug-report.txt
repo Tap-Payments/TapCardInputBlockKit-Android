@@ -1,0 +1,20 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="company.tap.tapcardinputkit"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/a.kazi/Documents/TapProjects/TapKits2020/TapBlockCardInput-1/tapcardinputkit/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/a.kazi/Documents/TapProjects/TapKits2020/TapBlockCardInput-1/tapcardinputkit/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/Users/a.kazi/Documents/TapProjects/TapKits2020/TapBlockCardInput-1/tapcardinputkit/src/main/AndroidManifest.xml:3:1-6:7
+12        android:hardwareAccelerated="false"
+12-->/Users/a.kazi/Documents/TapProjects/TapKits2020/TapBlockCardInput-1/tapcardinputkit/src/main/AndroidManifest.xml:5:5-40
+13        android:largeHeap="true" />
+13-->/Users/a.kazi/Documents/TapProjects/TapKits2020/TapBlockCardInput-1/tapcardinputkit/src/main/AndroidManifest.xml:4:5-29
+14
+15</manifest>

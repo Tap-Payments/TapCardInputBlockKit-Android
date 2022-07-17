@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/card_input_layout">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cardNumberFieldTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height_basic"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/margin_basic_8dp"
+            android:layout_toStartOf="@id/card_scanner"
+            app:hintTextAppearance="@style/TextInputLayout.Hint">
+
+            <company.tap.tapcardinputkit.internal.views.CardNumberEditText
+                android:id="@+id/card_number"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789 "
+                android:gravity="start"
+                android:inputType="number"
+                android:hint="@string/card_number"
+                android:drawableEnd="@drawable/ic_card"
+                android:backgroundTint="@color/mercury"
+                 />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/card_scanner"
+            android:layout_width="@dimen/margin_basic_25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/margin_basic_16dp"
+            android:src="@drawable/scanicon"
+            android:contentDescription="@string/scan_a_card" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_text_height_basic"
+        android:layout_marginEnd="@dimen/margin_basic_16dp"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/expirationDateContainer"
+            app:hintTextAppearance="@style/TextInputLayout.Hint">
+
+            <company.tap.tapcardinputkit.internal.views.CardExpirationDateEditText
+                android:id="@+id/expiration_date"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:inputType="date"
+                android:maxLength="4"
+                android:hint="@string/mm_yy"
+                app:backgroundTint="@color/mercury" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6dp"
+            android:background="@color/mercury" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.Hint">
+
+            <company.tap.tapcardinputkit.internal.views.CardCvvEditText
+                android:id="@+id/card_cvv"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="@string/cvv"
+                app:backgroundTint="@color/mercury" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_text_height_basic"
+        android:layout_marginEnd="@dimen/margin_basic_16dp"
+        app:hintTextAppearance="@style/TextInputLayout.Hint">
+
+        <company.tap.tapcardinputkit.internal.views.CardHolderNameEditText
+            android:id="@+id/holder_name"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/card_holder_name"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:backgroundTint="@color/mercury" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/card_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+      >
+
+        <TextView
+            android:id="@+id/switch_Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/for_faster_and_more_secure_checkout_save_your_card" />
+
+    <company.tap.tapcardinputkit.internal.views.CardSaveSwitch
+        android:id="@+id/save_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:textOn="@string/on"
+        android:textOff="@string/off"
+       />
+    </LinearLayout>
+</LinearLayout>
